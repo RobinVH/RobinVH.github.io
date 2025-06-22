@@ -2,7 +2,7 @@ name: Sync Site Data
 
 on:
   schedule:
-    - cron: '10 * * * *'  # every hour, ensure all data actions have completed
+    - cron: '10 */4 * * *'  # every hour, ensure all data actions have completed
   workflow_dispatch:      # alows manual runs
 
 jobs:
