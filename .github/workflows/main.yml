@@ -17,7 +17,7 @@ jobs:
 
       - name: Clone Garmin data repo
         run: |
-          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/RobinVH/GarminData.git garmin-temp
+          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/RobinVH/GarminData garmin-temp
 
       - name: Copy output to site folder
         run: |
