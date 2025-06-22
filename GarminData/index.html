@@ -1,0 +1,69 @@
+
+            <!DOCTYPE html>
+        <html lang="en">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+          <title>Garmin Weekly Summary</title>
+          <style>
+            body {
+              font-family: sans-serif;
+              margin: 2rem;
+              background: #f9f9f9;
+              color: #333;
+            }
+            h1 {
+              text-align: center;
+            }
+            .container {
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: space-around;
+              gap: 2rem;
+            }
+            .image {
+              flex: 1 1 45%;         /* responsive resizing, up to 2 per row */
+              max-width: 600px;
+              min-width: 280px;
+              width: 100%;
+              height: auto;
+              border: 1px solid #ccc;
+              background: white;
+              padding: 1rem;
+              box-sizing: border-box;
+          }
+            table {
+              border-collapse: collapse;
+              margin: 0 auto;
+              background: white;
+            }
+            th, td {
+              border: 1px solid #ccc;
+              padding: 0.5rem 1rem;
+              text-align: right;
+            }
+            th {
+              background-color: #eee;
+            }
+          </style>
+        </head>
+        <body>
+
+          <h1>Garmin Weekly Training Summary</h1>
+
+          <div class="container">
+            <img src="load_over_time.png" alt="RPE" class="image" />
+            <img src="distance_over_time.png" alt="Distance" class="image" />
+          </div>
+
+          <h2 style="text-align: center; margin-top: 3rem;">Metrics</h2>
+          <table>
+            <tr><th>Metric</th><th>Value</th></tr>
+            <tr><td>Distance run this week (km)</td><td>10.7</td></tr>
+            <tr><td>Distance run last week (km)</td><td>13.0</td></tr>
+            <tr><td>km_to_run</td><td>-4.3</td></tr>
+          </table>
+
+        </body>
+        </html>
+        
