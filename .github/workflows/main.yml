@@ -11,15 +11,13 @@ jobs:
     steps:
       - name: Checkout portfolio repo
         uses: actions/checkout@v4
-        with:
-          persist-credentials: false  # we’ll push manually later
-          fetch-depth: 0
 
-      - name: Clone Garmin data repo
-        run: |
-          git clone https://.:${{ secrets.GITHUB_TOKEN }}@github.com/RobinVH/GarminData.git garmin-temp
-          env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Checkout internal private repo (same org)
+        uses: actions/checkout@v4
+        with:
+          repository: GarminData
+          token: ${{ secrets.GITHUB_TOKEN }}
+          path: https://github.com/RobinVH
 
       - name: Copy output to site folder
         run: |
