@@ -2,8 +2,8 @@ name: Sync Site Data
 
 on:
   schedule:
-    - cron: '0 * * * *'  # every hour
-  workflow_dispatch:      # allows manual runs
+    - cron: '10 * * * *'  # every hour, ensure all data actions have completed
+  workflow_dispatch:      # alows manual runs
 
 jobs:
   update-site:
