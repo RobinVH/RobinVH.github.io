@@ -1,69 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robin VH - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-            <!DOCTYPE html>
-        <html lang="en">
-        <head>
-          <meta charset="UTF-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-          <title>Garmin Weekly Summary</title>
-          <style>
-            body {
-              font-family: sans-serif;
-              margin: 2rem;
-              background: #f9f9f9;
-              color: #333;
-            }
-            h1 {
-              text-align: center;
-            }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem 0;
+        }
+
+        .profile-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            margin-bottom: 2rem;
+        }
+
+        .profile-header h1 {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: #667eea;
+        }
+
+        .project-card h3 {
+            color: #333;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .project-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover::after {
+            transform: translateX(3px);
+        }
+
+        .featured {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border: 2px solid #667eea;
+        }
+
+        .featured::before {
+            height: 6px;
+        }
+
+        .featured h3 {
+            color: #667eea;
+        }
+
+        .skills {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .skills h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .contact {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact h2 {
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: #333;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-link:hover {
+            background: #555;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
             .container {
-              display: flex;
-              flex-wrap: wrap;
-              justify-content: space-around;
-              gap: 2rem;
+                padding: 1rem;
             }
-            .image {
-              flex: 1 1 45%;         /* responsive resizing, up to 2 per row */
-              max-width: 600px;
-              min-width: 280px;
-              width: 100%;
-              height: auto;
-              border: 1px solid #ccc;
-              background: white;
-              padding: 1rem;
-              box-sizing: border-box;
-          }
-            table {
-              border-collapse: collapse;
-              margin: 0 auto;
-              background: white;
+            
+            .profile-header h1 {
+                font-size: 2rem;
             }
-            th, td {
-              border: 1px solid #ccc;
-              padding: 0.5rem 1rem;
-              text-align: right;
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
             }
-            th {
-              background-color: #eee;
+            
+            .contact-links {
+                flex-direction: column;
+                align-items: center;
             }
-          </style>
-        </head>
-        <body>
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-section">
+                <div class="profile-header">
+                    <h1>Robin VH</h1>
+                    <p>Developer & Data Enthusiast</p>
+                </div>
+            </div>
+        </header>
 
-          <h1>Garmin Weekly Training Summary</h1>
+        <main>
+            <section class="projects">
+                <div class="projects-grid">
+                    <div class="project-card featured">
+                        <h3>🏃‍♂️ Garmin Data Analytics</h3>
+                        <p>Personal fitness data visualization and analysis dashboard. Track your running, cycling, and other activities with interactive charts and insights.</p>
+                        <a href="https://robinvh.github.io/GarminData" class="project-link" target="_blank" rel="noopener noreferrer">
+                            View Dashboard
+                        </a>
+                    </div>
 
-          <div class="container">
-            <img src="load_over_time.png" alt="RPE" class="image" />
-            <img src="distance_over_time.png" alt="Distance" class="image" />
-          </div>
+                    <div class="project-card">
+                        <h3>💻 Web Development</h3>
+                        <p>Modern web applications built with the latest technologies. Focused on performance, user experience, and clean code architecture.</p>
+                        <a href="#" class="project-link">
+                            Explore Projects
+                        </a>
+                    </div>
 
-          <h2 style="text-align: center; margin-top: 3rem;">Metrics</h2>
-          <table>
-            <tr><th>Metric</th><th>Value</th></tr>
-            <tr><td>km_run_this_week</td><td>8</td></tr>
-            <tr><td>km_run_last_week</td><td>13.0</td></tr>
-            <tr><td>km_to_run</td><td>0.0</td></tr>
-          </table>
+                    <div class="project-card">
+                        <h3>📊 Data Analysis</h3>
+                        <p>Data-driven insights and visualizations. Transform raw data into meaningful stories and actionable intelligence.</p>
+                        <a href="#" class="project-link">
+                            View Analysis
+                        </a>
+                    </div>
 
-        </body>
-        </html>
-        
+                    <div class="project-card">
+                        <h3>🚀 Open Source</h3>
+                        <p>Contributing to the open source community with useful tools and libraries. Check out my GitHub for the latest projects.</p>
+                        <a href="https://github.com/RobinVH" class="project-link" target="_blank" rel="noopener noreferrer">
+                            GitHub Profile
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            <section class="skills">
+                <h2>Skills & Technologies</h2>
+                <div class="skill-tags">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Data Visualization</span>
+                    <span class="skill-tag">GitHub Actions</span>
+                    <span class="skill-tag">HTML/CSS</span>
+                    <span class="skill-tag">API Development</span>
+                </div>
+            </section>
+
+            <section class="contact">
+                <h2>Get In Touch</h2>
+                <div class="contact-links">
+                    <a href="https://github.com/RobinVH" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        GitHub
+                    </a>
+                    <a href="mailto:your.email@example.com" class="contact-link">
+                        Email
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank" rel="noopener noreferrer">
+                        LinkedIn
+                    </a>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
