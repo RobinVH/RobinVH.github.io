@@ -28,6 +28,6 @@ jobs:
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
-          git add garmin
+          git add GarminData
           git commit -m "Update Garmin data $(date)" || echo "No changes"
           git push
