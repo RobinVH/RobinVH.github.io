@@ -17,6 +17,7 @@ jobs:
         with:
           repository: RobinVH/GarminData
           token: ${{ secrets.MY_PAT }}
+          path: garmin-temp
 
       - name: Copy output to site folder
         run: |
