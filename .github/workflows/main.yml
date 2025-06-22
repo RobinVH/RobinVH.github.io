@@ -15,9 +15,8 @@ jobs:
       - name: Checkout internal private repo (same org)
         uses: actions/checkout@v4
         with:
-          repository: GarminData
+          repository: RobinVH/GarminData
           token: ${{ secrets.GITHUB_TOKEN }}
-          path: https://github.com/RobinVH
 
       - name: Copy output to site folder
         run: |
