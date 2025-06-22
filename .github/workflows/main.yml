@@ -22,7 +22,7 @@ jobs:
       - name: Copy output to site folder
         run: |
           mkdir -p GarminData
-          cp -r garmin-temp/GarminData/output/* garmin/
+          cp -r garmin-temp/GarminData/output/* garminData/
 
       - name: Commit and push changes
         run: |
