@@ -34,7 +34,8 @@ jobs:
       - name: Copy output to site folder
         run: |
           mkdir -p SpotifyAuto
-          cp -r spotify-temp/SpotifyAuto/output/* SpotifyAuto/
+          cp -r spotify-temp/output/* SpotifyAuto/
+        
 
       - name: Commit and push changes
         run: |
