@@ -1,308 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robin VH - Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robin VH - Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #6a4cff;
+      --gradient: linear-gradient(135deg, #667eea, #764ba2);
+      --text: #333;
+      --background: #f5f6fa;
+      --card-bg: white;
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      --radius: 16px;
+    }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            line-height: 1.6;
-            min-height: 100vh;
-        }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
 
-        header {
-            text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem 0;
-        }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
 
-        .profile-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
-            margin-bottom: 2rem;
-        }
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
 
-        .profile-header h1 {
-            font-size: 3rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 0.5rem;
-        }
+    .profile-section {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 3rem;
+      box-shadow: var(--shadow);
+    }
 
-        .profile-header p {
-            font-size: 1.2rem;
-            color: #666;
-            margin-bottom: 2rem;
-        }
+    .profile-header h1 {
+      font-size: 3rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
 
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
-        }
+    .profile-header p {
+      font-size: 1.2rem;
+      color: #555;
+    }
 
-        .project-card {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            position: relative;
-            overflow: hidden;
-        }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
 
-        .project-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-        }
+    .project-card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border-top: 4px solid transparent;
+    }
 
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            border-color: #667eea;
-        }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--gradient);
+    }
 
-        .project-card h3 {
-            color: #333;
-            margin-bottom: 1rem;
-            font-size: 1.5rem;
-        }
+    .project-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
 
-        .project-card p {
-            color: #666;
-            margin-bottom: 1.5rem;
-        }
+    .project-card h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
 
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
+    .project-card p {
+      color: #666;
+      margin-bottom: 1.5rem;
+    }
 
-        .project-link:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
+    .project-link {
+      display: inline-block;
+      padding: 0.7rem 1.4rem;
+      background: var(--gradient);
+      color: #fff;
+      text-decoration: none;
+      border-radius: 999px;
+      font-weight: 600;
+      transition: transform 0.3s ease;
+    }
 
-        .project-link::after {
-            content: '→';
-            transition: transform 0.3s ease;
-        }
+    .project-link:hover {
+      transform: scale(1.05);
+    }
 
-        .project-link:hover::after {
-            transform: translateX(3px);
-        }
+    .skills {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      margin-top: 2rem;
+      box-shadow: var(--shadow);
+    }
 
-        .featured {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
-            border: 2px solid #667eea;
-        }
+    .skills h2 {
+      margin-bottom: 1rem;
+    }
 
-        .featured::before {
-            height: 6px;
-        }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+    }
 
-        .featured h3 {
-            color: #667eea;
-        }
+    .skill-tag {
+      background: var(--gradient);
+      color: #fff;
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+    }
 
-        .skills {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-top: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
+    .contact {
+      margin-top: 3rem;
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
 
-        .skills h2 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
 
-        .skill-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-        }
+    .contact-link {
+      padding: 0.6rem 1.2rem;
+      background: var(--primary);
+      color: #fff;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 500;
+      transition: background 0.3s ease, transform 0.2s;
+    }
 
-        .skill-tag {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
+    .contact-link:hover {
+      background: #5842cc;
+      transform: translateY(-2px);
+    }
 
-        .contact {
-            text-align: center;
-            margin-top: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact h2 {
-            margin-bottom: 1rem;
-            color: #333;
-        }
-
-        .contact-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .contact-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.5rem;
-            background: #333;
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-        }
-
-        .contact-link:hover {
-            background: #555;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 1rem;
-            }
-            
-            .profile-header h1 {
-                font-size: 2rem;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-links {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
-    </style>
+    @media (max-width: 768px) {
+      .container {
+        padding: 1.2rem;
+      }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="profile-section">
-                <div class="profile-header">
-                    <h1>Robin VH</h1>
-                    <p>Developer & Data Enthusiast</p>
-                </div>
-            </div>
-        </header>
+  <div class="container">
+    <header>
+      <div class="profile-section">
+        <div class="profile-header">
+          <h1>Robin VH</h1>
+          <p>Developer & Data Enthusiast</p>
+        </div>
+      </div>
+    </header>
 
-        <main>
-            <section class="projects">
-                <div class="projects-grid">
-                    <div class="project-card featured">
-                        <h3>🏃‍♂️ Garmin Data Analytics</h3>
-                        <p>Personal fitness data visualization and analysis dashboard. Track your running, cycling, and other activities with interactive charts and insights.</p>
-                        <a href="https://robinvh.github.io/GarminData" class="project-link" target="_blank" rel="noopener noreferrer">
-                            View Dashboard
-                        </a>
-                    </div>
+    <main>
+      <section class="projects">
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>🏃‍♂️ Garmin Data Analytics</h3>
+            <p>Personal fitness data visualization and analysis dashboard. Track your running, cycling, and other activities with interactive charts and insights.</p>
+            <a href="https://robinvh.github.io/GarminData" class="project-link" target="_blank">View Dashboard</a>
+          </div>
 
-                    <div class="project-card">
-                        <h3>💻 Web Development</h3>
-                        <p>Modern web applications built with the latest technologies. Focused on performance, user experience, and clean code architecture.</p>
-                        <a href="#" class="project-link">
-                            Explore Projects
-                        </a>
-                    </div>
+          <div class="project-card">
+            <h3>Concerts of followed artists</h3>
+            <p>MMy personal concert notifier.</p>
+            <a href="https://robinvh.github.io/SpotifyAuto" class="project-link">Explore Projects</a>
+          </div>
 
-                    <div class="project-card">
-                        <h3>📊 Data Analysis</h3>
-                        <p>Data-driven insights and visualizations. Transform raw data into meaningful stories and actionable intelligence.</p>
-                        <a href="#" class="project-link">
-                            View Analysis
-                        </a>
-                    </div>
+          <div class="project-card">
+            <h3>📊 Data Analysis</h3>
+            <p>Data-driven insights and visualizations. Transform raw data into meaningful stories and actionable intelligence.</p>
+            <a href="#" class="project-link">View Analysis</a>
+          </div>
+        </div>
+      </section>
 
-                    <div class="project-card">
-                        <h3>🚀 Open Source</h3>
-                        <p>Contributing to the open source community with useful tools and libraries. Check out my GitHub for the latest projects.</p>
-                        <a href="https://github.com/RobinVH" class="project-link" target="_blank" rel="noopener noreferrer">
-                            GitHub Profile
-                        </a>
-                    </div>
-                </div>
-            </section>
+      <section class="skills">
+        <h2>Skills & Technologies</h2>
+        <div class="skill-tags">
+          <span class="skill-tag">JavaScript</span>
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">React</span>
+          <span class="skill-tag">Node.js</span>
+          <span class="skill-tag">Data Visualization</span>
+          <span class="skill-tag">GitHub Actions</span>
+          <span class="skill-tag">HTML/CSS</span>
+          <span class="skill-tag">API Development</span>
+        </div>
+      </section>
 
-            <section class="skills">
-                <h2>Skills & Technologies</h2>
-                <div class="skill-tags">
-                    <span class="skill-tag">JavaScript</span>
-                    <span class="skill-tag">Python</span>
-                    <span class="skill-tag">React</span>
-                    <span class="skill-tag">Node.js</span>
-                    <span class="skill-tag">Data Visualization</span>
-                    <span class="skill-tag">GitHub Actions</span>
-                    <span class="skill-tag">HTML/CSS</span>
-                    <span class="skill-tag">API Development</span>
-                </div>
-            </section>
-
-            <section class="contact">
-                <h2>Get In Touch</h2>
-                <div class="contact-links">
-                    <a href="https://github.com/RobinVH" class="contact-link" target="_blank" rel="noopener noreferrer">
-                        GitHub
-                    </a>
-                    <a href="mailto:your.email@example.com" class="contact-link">
-                        Email
-                    </a>
-                    <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank" rel="noopener noreferrer">
-                        LinkedIn
-                    </a>
-                </div>
-            </section>
-        </main>
-    </div>
+      <section class="contact">
+        <h2>Get In Touch</h2>
+        <div class="contact-links">
+          <a href="https://github.com/RobinVH" class="contact-link" target="_blank">GitHub</a>
+          <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+          <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">LinkedIn</a>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
 </html>
