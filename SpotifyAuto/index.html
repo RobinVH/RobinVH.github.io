@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Amenra Concerts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f6f8fa;
+      --card-bg: #ffffff;
+      --accent: #6a4cff;
+      --accent-light: #e6e0ff;
+      --text: #333;
+      --border: #e0e0e0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg);
+      margin: 0;
+      padding: 2em;
+      color: var(--text);
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.2em;
+      margin-bottom: 1.5em;
+      color: var(--accent);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+      animation: fadeIn 0.5s ease;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+    }
+
+    th {
+      background-color: var(--accent-light);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 0.95em;
+    }
+
+    tr {
+      transition: background-color 0.2s ease;
+    }
+
+    tr:not(:last-child) {
+      border-bottom: 1px solid var(--border);
+    }
+
+    tr:hover {
+      background-color: #f0f4ff;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      table, thead, tbody, th, td, tr {
+        display: block;
+      }
+
+      thead {
+        display: none;
+      }
+
+      tr {
+        margin-bottom: 1em;
+        border-radius: 10px;
+        background-color: var(--card-bg);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      td {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--border);
+      }
+
+      td:last-child {
+        border-bottom: none;
+      }
+
+      td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #666;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Concerts</h1>
+  <table id="concert-table"></table>
+
+  <script>
+    async function loadCSV() {
+      const response = await fetch('event_data.csv');
+      const text = await response.text();
+      const rows = text.trim().split('\n').map(row => row.split(';'));
+      const table = document.getElementById('concert-table');
+
+      const thead = document.createElement('thead');
+      const headerRow = document.createElement('tr');
+      rows[0].forEach(cell => {
+        const th = document.createElement('th');
+        th.textContent = cell;
+        headerRow.appendChild(th);
+      });
+      thead.appendChild(headerRow);
+      table.appendChild(thead);
+
+      const tbody = document.createElement('tbody');
+      rows.slice(1).forEach(row => {
+        const tr = document.createElement('tr');
+        row.forEach((cell, idx) => {
+          const td = document.createElement('td');
+          td.setAttribute('data-label', rows[0][idx]);
+          if (rows[0][idx] === 'Link') {
+            const a = document.createElement('a');
+            a.href = cell;
+            a.textContent = 'View';
+            a.target = '_blank';
+            td.appendChild(a);
+          } else {
+            td.textContent = cell;
+          }
+          tr.appendChild(td);
+        });
+        tbody.appendChild(tr);
+      });
+      table.appendChild(tbody);
+    }
+
+    loadCSV();
+  </script>
+</body>
+</html>
