@@ -12,7 +12,7 @@ jobs:
       - name: Checkout portfolio repo
         uses: actions/checkout@v4
 
-      - name: Checkout internal private repo (same org)
+      - name: Checkout garminData
         uses: actions/checkout@v4
         with:
           repository: RobinVH/GarminData
@@ -23,11 +23,25 @@ jobs:
         run: |
           mkdir -p GarminData
           cp -r garmin-temp/GarminData/output/* GarminData/
+          
+      - name: Checkout SpotifyAuto
+        uses: actions/checkout@v4
+        with:
+          repository: RobinVH/SpotifyAuto
+          token: ${{ secrets.MY_PAT }}
+          path: spotify-temp
+
+      - name: Copy output to site folder
+        run: |
+          mkdir -p SpotifyAuto
+          cp -r spotify-temp/output/* SpotifyAuto/
+        
 
       - name: Commit and push changes
         run: |
           git config user.name "github-actions"
           git config user.email "github-actions@github.com"
           git add GarminData
-          git commit -m "Update Garmin data $(date)" || echo "No changes"
+          git add SpotifyAuto
+          git commit -m "Update all data $(date)" || echo "No changes"
           git push
